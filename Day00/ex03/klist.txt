@@ -1,0 +1,32 @@
+Credentials cache: API:31084
+        Principal: wweng@42.US.ORG
+    Cache version: 0
+
+Server: krbtgt/42.US.ORG@42.US.ORG
+Client: wweng@42.US.ORG
+Ticket etype: aes256-cts-hmac-sha1-96, kvno 1
+Ticket length: 313
+Auth time:  Jul 23 14:39:06 2018
+End time:   Jul 24 00:39:06 2018
+Ticket flags: enc-pa-rep, pre-authent, initial, proxiable, forwardable
+Addresses: addressless
+
+Server: ldap/ldap-proxy.42.us.org@42.US.ORG
+Client: wweng@42.US.ORG
+Ticket etype: aes256-cts-hmac-sha1-96, kvno 9
+Ticket length: 343
+Auth time:  Jul 23 14:39:06 2018
+Start time: Jul 23 14:39:12 2018
+End time:   Jul 24 00:39:06 2018
+Ticket flags: enc-pa-rep, transited-policy-checked, pre-authent, proxiable, forwardable
+Addresses: addressless
+
+Server: host/vgs-fn1.42.us.org@42.US.ORG
+Client: wweng@42.US.ORG
+Ticket etype: aes256-cts-hmac-sha1-96, kvno 2
+Ticket length: 340
+Auth time:  Jul 23 14:39:06 2018
+Start time: Jul 23 15:18:28 2018
+End time:   Jul 24 00:39:06 2018
+Ticket flags: enc-pa-rep, transited-policy-checked, pre-authent, proxiable, forwardable
+Addresses: addressless
