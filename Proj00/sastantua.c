@@ -24,9 +24,13 @@ int main(){
           printf(" ");
         }
         //==space
-        printf("\/");
+        printf("/");
         for(int z = 0 ; z < tmp ; z++){
-          printf("*");
+          if( x == input - 1 && y > stars+x+3-input-1 && z > (tmp/2 - input/2 - 1) && z < (tmp/2 + input/2 + 1)){
+            printf("|");
+          }else{
+            printf("*");
+          }
         }
         printf("\\\n");
       }
