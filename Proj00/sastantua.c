@@ -24,7 +24,7 @@ int main(){
           printf(" ");
         }
         //==space
-        printf("\/");
+        printf("/");
         for(int z = 0 ; z < tmp ; z++){
           printf("*");
         }
