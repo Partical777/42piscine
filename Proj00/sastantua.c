@@ -27,7 +27,11 @@ int main(){
         printf("/");
         for(int z = 0 ; z < tmp ; z++){
           if( x == input - 1 && y > stars+x+3-input-1 && z > (tmp/2 - input/2 - 1) && z < (tmp/2 + input/2 + 1)){
-            printf("|");
+            if(x >= 4 && y == stars+x+3-input-1 + (input+1)/2 && z == tmp/2 + input/2 + 1 - 2){
+              printf("$");
+            }else{
+              printf("|");
+            }
           }else{
             printf("*");
           }
