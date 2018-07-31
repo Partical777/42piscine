@@ -1,27 +1,33 @@
-#include <stdio.h>
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wweng <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/07/30 16:50:59 by wweng             #+#    #+#             */
+/*   Updated: 2018/07/30 21:30:05 by wweng            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void ft_putnbr(int nb);
-void ft_putchar(char);
+void	ft_putnbr(int nb)
+{
+	int i;
+	int tmp;
+	int x;
 
-
-
-
-void ft_putnbr(int nb){
-  int i = 0;
-  char abc[100];
-  int tmp = 1;
-  int x = 0;
-  while(i < 100 && nb > 0){
-    tmp = nb%10;
-    abc[i] = tmp + '0';
-    nb = nb/10;
-    i++;
-    abc[i+1] = '\0';
-  }
-  while(x < i || abc[x] != '\0'){
-    ft_putchar(abc[x]);
-    x++;
-  }
-  
+	x = 0;
+	i = 1;
+	tmp = 1;
+	while ((nb / i) > 0)
+	{
+		i = i * 10;
+	}
+	while (nb > 0)
+	{
+		x = nb / i;
+		nb = nb % i;
+		i = i / 10;
+		ft_putchar(x);
+	}
 }

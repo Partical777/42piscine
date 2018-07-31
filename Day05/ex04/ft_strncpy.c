@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wweng <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/07/30 16:49:16 by wweng             #+#    #+#             */
-/*   Updated: 2018/07/30 17:56:03 by wweng            ###   ########.fr       */
+/*   Created: 2018/07/30 17:14:01 by wweng             #+#    #+#             */
+/*   Updated: 2018/07/30 21:28:11 by wweng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putstr(char *str)
-{
-	int i;
+#include <stdio.h>
+#include <string.h>
 
-	i = 0;
-	while (str[i] != '\0')
+char	*ft_strncpy(char *dest, char *src, unsigned int n)
+{
+	unsigned int len;
+
+	len = 0;
+	while (*(src + Len) != '\0' || len < n)
 	{
-		ft_putchar(str[i]);
-		i++;
+		if (*(src + len) != '\0' && len < n)
+		{
+			*(dest + len) = *(src + len);
+		}
+		else
+		{
+			*(dest + len) = '\0';
+		}
+		len++;
 	}
+	return (dest);
 }
