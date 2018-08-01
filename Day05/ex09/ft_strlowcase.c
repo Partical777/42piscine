@@ -12,7 +12,6 @@
 
 char	*ft_strlowcase(char *str)
 {
-	char dest[100];
 	int len;
 	int x;
 	int i;
@@ -24,11 +23,9 @@ char	*ft_strlowcase(char *str)
 	{
 		if (str[i] >= 'A' && str[i] <= 'Z')
 		{
-			dest[i] = str[i] + 32;
+			str[i] += 32;
 		}
 		i++;
 	}
-	dest[i] = '\0';
-	str = dest;
 	return (str);
 }
