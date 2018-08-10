@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_last.c                                     :+:      :+:    :+:   */
+/*   btree_create_node.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wweng <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 20:39:48 by wweng             #+#    #+#             */
-/*   Updated: 2018/08/08 21:30:56 by wweng            ###   ########.fr       */
+/*   Created: 2018/08/09 12:13:44 by wweng             #+#    #+#             */
+/*   Updated: 2018/08/09 17:15:54 by wweng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "ft_list.h"
+#include "ft_btree.h"
 
-t_list *ft_list_last(t_list *begin_list)
+t_btree	*btree_create_node(void *item)
 {
-	t_list *list;
+	t_btree	*node;
 
-	if (list)
+	node = NULL;
+	node = (t_btree*)malloc(sizeof(struct node));
+	if (node)
 	{
-		while ((*list).next)
-		{
-			list = (*list).next;
-		}
-		return list;
+		(*node).left = 0;
+		(*node).right = 0;
+		(*node).item = 0;
 	}
+	return (node);
 }

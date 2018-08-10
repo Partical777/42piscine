@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_last.c                                     :+:      :+:    :+:   */
+/*   ft_btree.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wweng <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/08 20:39:48 by wweng             #+#    #+#             */
-/*   Updated: 2018/08/08 21:30:56 by wweng            ###   ########.fr       */
+/*   Created: 2018/08/09 12:05:00 by wweng             #+#    #+#             */
+/*   Updated: 2018/08/09 17:16:11 by wweng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "ft_list.h"
-
-t_list *ft_list_last(t_list *begin_list)
+typedef struct		s_btree
 {
-	t_list *list;
-
-	if (list)
-	{
-		while ((*list).next)
-		{
-			list = (*list).next;
-		}
-		return list;
-	}
-}
+	struct s_btree	*parent;
+	struct s_btree	*right;
+	struct s_btree	*left;
+	void			*item;
+}					t_btree;
