@@ -3,9 +3,40 @@
 
 int main(void) 
 {
-    int i;
-    int j;
+	int linenumber; //行數
+    int biggestsofar; //目前找到最大的
+    int obstacle;
+    int pointX; //目前找到最大的點x值
+    int pointY; //目前找到最大的點y值
+    int x;
+    int y;
+    int testbiggest;
+    int testx;
+    int testy;
+	//===
+	int firstlinelock;
+	char buf;
+	char nothingchar; //.
+	char obstaclechar; //o
+	char fillinsidechar; //x
 
+	firstlinelock = 1;
+	if(firstlinelock)
+	{
+		linenumber = read(0, &buf, 1);
+		nothingchar = read(0, &buf, 1);
+		obstaclechar = read(0, &buf, 1);
+		fillinsidechar = read(0, &buf, 1);
+		if (read(0, &buf, 1) == '\n')
+		{
+			firstlinelock = 0;
+		}
+	}
+	else
+	{
+		//input data to array;
+	}
+//===
     char arr[9][27] = {
     "............ooo............",
     "....o....o.................", 
@@ -17,25 +48,18 @@ int main(void)
     "......o....................", 
     "..o.......o................"
     };
+//=
+	int i;
+    int j;
     i = 0;
     j = 0;
     for(i = 0 ; i < 9 ; i++){
-    for(j = 0 ; j < 27 ; j++){
-        printf("%c", arr[i][j]);
-    }
-    printf("\n");
+		for(j = 0 ; j < 27 ; j++){
+			printf("%c", arr[i][j]);
+		}
+		printf("\n");
     }
 //===
-    int linenumber; //行數
-    int biggestsofar; //目前找到最大的
-    int obstacle;
-    int pointX; //目前找到最大的點x值
-    int pointY; //目前找到最大的點y值
-    int x;
-    int y;
-    int testbiggest;
-    int testx;
-    int testy;
 
     linenumber = 9;
     biggestsofar = 0;
@@ -58,7 +82,7 @@ int main(void)
                     testy = 0 ;
                     while (testy < testbiggest)
                     {
-                        if (arr[x + testx][y + testy] == 'o')
+                        if (arr[x + testx][y + testy] == obstaclechar)
                         {
                             obstacle = 1;
                             break;
@@ -97,7 +121,7 @@ int main(void)
         b = pointY;
         while (b < (pointY + biggestsofar))
         {
-            arr[a][b] = 'x';
+            arr[a][b] = fillinsidechar;
             b++;
         }
         a++;
