@@ -6,14 +6,14 @@ int main(void) {
   int j;
 
   const char arr[9][27] = {
-    "...........................",
-    "....o......................", 
-    "............o..............", 
-    "...........................", 
-    "....o......................", 
-    "...............o...........", 
-    "...........................", 
-    "......o..............o.....", 
+    "............ooo............",
+    "....o....o.........oo...o..", 
+    ".....ooo....o...oo........", 
+    "ooo.............oo.........", 
+    "....o...........oo.........", 
+    ".......ooooo...o.......o...", 
+    ".oo........................", 
+    "......o....................", 
     "..o.......o................"
   };
   i = 0;
@@ -24,26 +24,17 @@ int main(void) {
     }
     printf("\n");
   }
-  // while (i < 9){
-  //   while (j < 27){
-  //     write(1, arr[0][j], 1);
 
-  //     j++;
-  //   }
-  //   j = 0;
-  //   write(1, "\n", 1);
-  //   i++;
-  // }
   int linenumber = 9; //行數
-  int biggestsofar = 0;
+  int biggestsofar = 0; //目前找到最大的
   int obstacle = 0;
-  int pointX = 0;
-  int pointY = 0;
+  int pointX = 0; //目前找到最大的點x值
+  int pointY = 0; //目前找到最大的點y值
 
   for (int x = 0 ; x < (linenumber - biggestsofar) ; x++){
-    for (int y = 0 ; y < 27 ; y++){
+    for (int y = 0 ; y < (27 - biggestsofar) ; y++){
 
-      for (int testbiggest = linenumber ; testbiggest > biggestsofar ; testbiggest--){
+      for (int testbiggest = (linenumber - x) ; testbiggest > biggestsofar ; testbiggest--){
         obstacle = 0;
 
           for (int testx = 0 ; testx < testbiggest ; testx++){
