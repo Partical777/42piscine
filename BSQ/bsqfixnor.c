@@ -1,4 +1,16 @@
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bsqfixnor.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wweng <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/12 19:42:42 by wweng             #+#    #+#             */
+/*   Updated: 2018/08/13 22:56:59 by wweng            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+ #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -91,19 +103,6 @@ int main(void)
             howwidth = width;
         }
         k++;
-    }
-
-
-//===test
-    printf("%d\n", width);
-    int i, j;
-    i = 0;
-    j = 0;
-    for(i = 0 ; i < linenumber ; i++){
-        for(j = 0 ; j < width ; j++){
-            printf("%c", arr[i][j]);
-        }
-        printf("\n");
     }
 
 
@@ -209,3 +208,4 @@ int main(void)
 
     return 0;
 }
+
