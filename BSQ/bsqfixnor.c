@@ -6,7 +6,7 @@
 /*   By: wweng <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/12 19:42:42 by wweng             #+#    #+#             */
-/*   Updated: 2018/08/14 10:23:23 by wweng            ###   ########.fr       */
+/*   Updated: 2018/08/14 11:45:26 by wweng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,49 +71,56 @@ char **getquestion(int *linenumber, char *nothingchar, char *obstaclechar, char 
     return arr;
 }
 
+void getwidth(char **arr, int *width, int *differentwidth, int linenumber, int nothingchar, int obstaclechar, int fillinsidechar)
+{
+    int howwidth;
+    int k;
+
+    k = 0;
+    howwidth = 0;
+    *differentwidth = 0;
+    while (k < linenumber)
+    {
+        *width = 0;
+        while (arr[k][*width] == nothingchar || arr[k][*width] == obstaclechar || arr[k][*width] == fillinsidechar)
+        {
+            (*width)++;
+        }
+
+        if (howwidth != 0 && howwidth != *width)
+        {
+            *differentwidth = 1;
+            break;
+        }
+        else
+        {
+            howwidth = *width;
+        }
+        k++;
+    }
+}
+
 int main(void) 
 {
-	int linenumber = 0;
-    
+	int linenumber;
     char nothingchar; //.
     char obstaclechar; //o
     char fillinsidechar; //x
     char **arr;
+
+    linenumber = 0;
 //===
 //Get Read
     arr = getquestion(&linenumber, &nothingchar, &obstaclechar, &fillinsidechar);   // 回傳arr
 //===
 //Get Each Line 是否等寬
 //Get Width
-    int howwidth;
     int width;
     int differentwidth;
-    int k;
 
-    k = 0;
-    howwidth = 0;
-    differentwidth = 0;
-    while (k < linenumber)
-    {
-        width = 0;
-        while (arr[k][width] == nothingchar || arr[k][width] == obstaclechar || arr[k][width] == fillinsidechar)
-        {
-            width++;
-        }
+    getwidth(arr, &width, &differentwidth, linenumber, nothingchar, obstaclechar, fillinsidechar);
 
-        if (howwidth != 0 && howwidth != width)
-        {
-            differentwidth = 1;
-            break;
-        }
-        else
-        {
-            howwidth = width;
-        }
-        k++;
-    }
-
-
+//===test map error
     if(differentwidth)
     {
         printf("map error\n");
