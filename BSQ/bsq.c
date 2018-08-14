@@ -64,14 +64,38 @@ int main(void)
     }
 //===
 //Get Each Line 是否等寬
-
-
-//===
 //Get Width
-    int width = 27; 
+    int howwidth;
+    int width;
+    int differentwidth;
+    int k;
+
+    k = 0;
+    howwidth = 0;
+    differentwidth = 0;
+    while (k < linenumber)
+    {
+        width = 0;
+        while (arr[k][width] == nothingchar || arr[k][width] == obstaclechar || arr[k][width] == fillinsidechar)
+        {
+            width++;
+        }
+
+        if (howwidth != 0 && howwidth != width)
+        {
+            differentwidth = 1;
+            break;
+        }
+        else
+        {
+            howwidth = width;
+        }
+        k++;
+    }
 
 
-//===
+//===test
+    printf("%d\n", width);
     int i, j;
     i = 0;
     j = 0;
@@ -81,7 +105,14 @@ int main(void)
         }
         printf("\n");
     }
-//===
+
+
+    if(differentwidth){
+        printf("map error\n");
+    }
+    else
+    { //if each line is same
+//=====logic and change+
 
     int biggestsofar; //目前找到最大的
     int obstacle;
@@ -113,7 +144,7 @@ int main(void)
                     testy = 0 ;
                     while (testy < testbiggest)
                     {
-                        if (arr[x + testx][y + testy] == 'o')
+                        if (arr[x + testx][y + testy] == obstaclechar)
                         {
                             obstacle = 1;
                             break;
@@ -152,7 +183,7 @@ int main(void)
         b = pointy;
         while (b < (pointy + biggestsofar))
         {
-            arr[a][b] = 'x';
+            arr[a][b] = fillinsidechar;
             b++;
         }
         a++;
@@ -170,5 +201,10 @@ int main(void)
         printf("\n");
         i++;
     }
+//=====logic and change-
+    
+    } //if each line is same
+
+
     return 0;
 }
