@@ -6,25 +6,19 @@
 /*   By: wweng <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/12 19:42:42 by wweng             #+#    #+#             */
-/*   Updated: 2018/08/13 22:56:59 by wweng            ###   ########.fr       */
+/*   Updated: 2018/08/14 10:23:23 by wweng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
- #include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 
-int main(void) 
+char **getquestion(int *linenumber, char *nothingchar, char *obstaclechar, char *fillinsidechar)
 {
-	int linenumber = 0;
-    int linenumber2;
-    char buf;
-    char nothingchar; //.
-    char obstaclechar; //o
-    char fillinsidechar; //x
-
     char **arr;
-
+    char buf;
+    int linenumber2;
     int xforinitial = -1;
     int yforinitial = 0;
     int malloctmpvar = 0;
@@ -34,30 +28,30 @@ int main(void)
     {
         if (buf >= '0' && buf <= '9')
         {
-            linenumber = (linenumber * 10) + (buf - '0');
+            *linenumber = (*linenumber * 10) + (buf - '0');
             choose = 1;
         }
         else if (choose == 1)
         {
-            linenumber2 = 8352100 / linenumber;
-            arr = malloc(sizeof(char*)*linenumber);
-            while (malloctmpvar < linenumber)
+            linenumber2 = 8352100 / *linenumber;
+            arr = malloc(sizeof(char*)**linenumber);
+            while (malloctmpvar < *linenumber)
             {
                 arr[malloctmpvar] = malloc(sizeof(char)*linenumber2);
                 malloctmpvar++;
             }
 
-            nothingchar = buf;
+            *nothingchar = buf;
             choose++;
         }
         else if (choose == 2)
         {
-            obstaclechar = buf;
+            *obstaclechar = buf;
             choose++;
         }
         else if (choose == 3)
         {
-            fillinsidechar = buf;
+            *fillinsidechar = buf;
             choose++;
         }
         else if (choose == 4)
@@ -74,6 +68,20 @@ int main(void)
             }
         }
     }
+    return arr;
+}
+
+int main(void) 
+{
+	int linenumber = 0;
+    
+    char nothingchar; //.
+    char obstaclechar; //o
+    char fillinsidechar; //x
+    char **arr;
+//===
+//Get Read
+    arr = getquestion(&linenumber, &nothingchar, &obstaclechar, &fillinsidechar);   // 回傳arr
 //===
 //Get Each Line 是否等寬
 //Get Width
@@ -189,6 +197,9 @@ int main(void)
         a++;
     }
 //===
+    int i;
+    int j ;
+
     i = 0;
     while (i < linenumber)
     {
