@@ -6,7 +6,7 @@
 /*   By: wweng <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/12 19:42:42 by wweng             #+#    #+#             */
-/*   Updated: 2018/08/14 11:45:26 by wweng            ###   ########.fr       */
+/*   Updated: 2018/08/14 12:00:56 by wweng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void getwidth(char **arr, int *width, int *differentwidth, int linenumber, int n
         {
             (*width)++;
         }
-
         if (howwidth != 0 && howwidth != *width)
         {
             *differentwidth = 1;
@@ -100,33 +99,9 @@ void getwidth(char **arr, int *width, int *differentwidth, int linenumber, int n
     }
 }
 
-int main(void) 
+void mainlogic(char **arr, int width, int linenumber, int obstaclechar, int fillinsidechar)
 {
-	int linenumber;
-    char nothingchar; //.
-    char obstaclechar; //o
-    char fillinsidechar; //x
-    char **arr;
-
-    linenumber = 0;
-//===
-//Get Read
-    arr = getquestion(&linenumber, &nothingchar, &obstaclechar, &fillinsidechar);   // 回傳arr
-//===
-//Get Each Line 是否等寬
-//Get Width
-    int width;
-    int differentwidth;
-
-    getwidth(arr, &width, &differentwidth, linenumber, nothingchar, obstaclechar, fillinsidechar);
-
-//===test map error
-    if(differentwidth)
-    {
-        printf("map error\n");
-    }
-    else
-    { //if each line is same
+     //if each line is same
 //=====logic and change+
 
     int biggestsofar; //目前找到最大的
@@ -221,6 +196,36 @@ int main(void)
     }
 //=====logic and change-
     
+}
+
+int main(void) 
+{
+	int linenumber;
+    char nothingchar; //.
+    char obstaclechar; //o
+    char fillinsidechar; //x
+    char **arr;
+
+    linenumber = 0;
+//===
+//Get Read
+    arr = getquestion(&linenumber, &nothingchar, &obstaclechar, &fillinsidechar);   // 回傳arr
+//===
+//Get Each Line 是否等寬
+//Get Width
+    int width;
+    int differentwidth;
+
+    getwidth(arr, &width, &differentwidth, linenumber, nothingchar, obstaclechar, fillinsidechar);
+
+//===test map error
+    if(differentwidth)
+    {
+        printf("map error\n");
+    }
+    else
+    {
+        mainlogic(arr, width, linenumber, obstaclechar, fillinsidechar);
     } //if each line is same
 
 
