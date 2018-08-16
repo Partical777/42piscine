@@ -6,7 +6,7 @@
 /*   By: wweng <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/12 19:42:42 by wweng             #+#    #+#             */
-/*   Updated: 2018/08/15 13:51:31 by wweng            ###   ########.fr       */
+/*   Updated: 2018/08/15 17:47:13 by wweng            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void getwidth(char **arr, int *width, int *differentwidth, int linenumber, int n
         *width = 0;
         while (arr[k][*width] == nothingchar || arr[k][*width] == obstaclechar || arr[k][*width] == fillinsidechar)
             (*width)++;
-        if (howwidth != 0 && howwidth != *width)
+        if ((howwidth != 0 && howwidth != *width) || *width == 0)
         {
             *differentwidth = 1;
             break;
@@ -233,12 +233,12 @@ int main(int argc, char **argv)
 {
     int i;
 
-    i = 0;
+    i = 1;
     if (argc >= 2)
     {
     	while (i < argc)
         {
-            mainfunction(argv[i + 1]);
+            mainfunction(argv[i]);
             i++;
         }
     }
