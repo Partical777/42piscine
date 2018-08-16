@@ -15,64 +15,71 @@
 #include <unistd.h>
 #include <fcntl.h>
 
+char **mapmalloc(int *fuckgetquestion, int *linenumber, char *nothingchar, char buf)
+{
+    char **arr;
+
+    fuckgetquestion[0] = 8352100 / *linenumber;
+    arr = malloc(sizeof(char*)**linenumber);
+    while (fuckgetquestion[3] < *linenumber)
+    {
+        arr[fuckgetquestion[3]] = malloc(sizeof(char)*fuckgetquestion[0]);
+        fuckgetquestion[3]++;
+    }
+    *nothingchar = buf;
+    fuckgetquestion[4]++;
+    return arr;
+}
+
+void choosecharacter(char **arr, int *fuckgetquestion, char *obstaclechar, char *fillinsidechar, char buf)
+{
+    if (fuckgetquestion[4] == 2)
+    {
+        *obstaclechar = buf;
+        fuckgetquestion[4]++;
+    }
+    else if (fuckgetquestion[4] == 3)
+    {
+        *fillinsidechar = buf;
+        fuckgetquestion[4]++;
+    }
+    else if (fuckgetquestion[4] == 4)
+    {
+        if (buf != '\n')
+        {
+            arr[fuckgetquestion[1]][fuckgetquestion[2]] = buf;
+            fuckgetquestion[2]++;
+        }
+        else if (buf == '\n')
+        {
+            fuckgetquestion[1]++;
+            fuckgetquestion[2] = 0;
+        }
+    }
+}
+
 char **getquestion(char *argv, int *linenumber, char *nothingchar, char *obstaclechar, char *fillinsidechar)
 {
     char **arr;
     char buf;
-    int linenumber2;
-    int xforinitial;
-    int yforinitial;
-    int malloctmpvar;
-    int choose;
-    int fopen;
+    int fuckgetquestion[6];
 
-    xforinitial = -1;
-    yforinitial = 0;
-    malloctmpvar = 0;
-    choose = 0;
-    fopen = open(argv, O_RDONLY);
-    while (read(fopen, &buf,  1))
+    fuckgetquestion[1] = -1;
+    fuckgetquestion[2] = 0;
+    fuckgetquestion[3] = 0;
+    fuckgetquestion[4] = 0;
+    fuckgetquestion[5] = open(argv, O_RDONLY);
+    while (read(fuckgetquestion[5], &buf,  1))
     {
         if (buf >= '0' && buf <= '9')
         {
             *linenumber = (*linenumber * 10) + (buf - '0');
-            choose = 1;
+            fuckgetquestion[4] = 1;
         }
-        else if (choose == 1)
-        {
-            linenumber2 = 8352100 / *linenumber;
-            arr = malloc(sizeof(char*)**linenumber);
-            while (malloctmpvar < *linenumber)
-            {
-                arr[malloctmpvar] = malloc(sizeof(char)*linenumber2);
-                malloctmpvar++;
-            }
-            *nothingchar = buf;
-            choose++;
-        }
-        else if (choose == 2)
-        {
-            *obstaclechar = buf;
-            choose++;
-        }
-        else if (choose == 3)
-        {
-            *fillinsidechar = buf;
-            choose++;
-        }
-        else if (choose == 4)
-        {
-            if (buf != '\n')
-            {
-                arr[xforinitial][yforinitial] = buf;
-                yforinitial++;
-            }
-            else if (buf == '\n')
-            {
-                xforinitial++;
-                yforinitial = 0;
-            }
-        }
+        else if (fuckgetquestion[4] == 1)
+            arr = mapmalloc(fuckgetquestion, linenumber, nothingchar, buf);
+        else
+            choosecharacter(arr, fuckgetquestion, obstaclechar, fillinsidechar, buf);
     }
     return arr;
 }
@@ -232,9 +239,7 @@ int main(int argc, char **argv)
         }
     }
     else
-    {
         write(1, "No Map Are You Kidding Me?\n", 27);
-    }
     return 0;
 }
 
