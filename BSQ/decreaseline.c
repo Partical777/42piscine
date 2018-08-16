@@ -138,63 +138,62 @@ void printanswer(char **arr, int linenumber, int width)
     }
 }
 
-void mainlogic(char **arr, int width, int linenumber, int obstaclechar, int fillinsidechar)
+int insidemainlogic(int *fuckmainlogic, char **arr, char obstaclechar)
 {
-    int biggestsofar;
-    int obstacle;
-    int pointx;
-    int pointy;
-    int x;
-    int y;
-    int testbiggest;
-    int testx;
-    int testy;
-
-    biggestsofar = 0;
-    obstacle = 0;
-    pointx = 0;
-    pointy = 0;
-    x = 0;
-    while (x < (linenumber - biggestsofar))
+    fuckmainlogic[1] = 0;
+    fuckmainlogic[7] = 0;
+    while (fuckmainlogic[7] < fuckmainlogic[6])
     {
-        y = 0;
-        while (y < (width - biggestsofar))
+        fuckmainlogic[8] = 0 ;
+        while (fuckmainlogic[8] < fuckmainlogic[6])
         {
-            testbiggest = (linenumber - x);
-            while (testbiggest > biggestsofar)
+            if (arr[fuckmainlogic[4] + fuckmainlogic[7]][fuckmainlogic[5] + fuckmainlogic[8]] == obstaclechar)
             {
-                obstacle = 0;
-                testx = 0;
-                while (testx < testbiggest)
-                {
-                    testy = 0 ;
-                    while (testy < testbiggest)
-                    {
-                        if (arr[x + testx][y + testy] == obstaclechar)
-                        {
-                            obstacle = 1;
-                            break;
-                        }
-                        testy++;
-                    }
-                    if (obstacle == 1)
-                        break;
-                    testx++;
-                }
-                if (obstacle == 0)
-                {
-                    pointx = x;
-                    pointy = y;
-                    biggestsofar = testbiggest;
-                    break;
-                }
-                testbiggest--;
+                fuckmainlogic[1] = 1;
+                break;
             }
-            y++;
+            fuckmainlogic[8]++;
         }
-        x++;
+        if (fuckmainlogic[1] == 1)
+            break;
+        fuckmainlogic[7]++;
     }
-    fillanswer(arr, biggestsofar, fillinsidechar, pointx, pointy);
+    if (fuckmainlogic[1] == 0)
+    {
+        fuckmainlogic[2] = fuckmainlogic[4];
+        fuckmainlogic[3] = fuckmainlogic[5];
+        fuckmainlogic[0] = fuckmainlogic[6];
+        return 0;
+    }
+    fuckmainlogic[6]--;
+    return 1;
+}
+
+void mainlogic(int defaultnumber, char **arr, int width, int linenumber, int obstaclechar, int fillinsidechar)
+{
+    int fuckmainlogic[9];
+
+    while (defaultnumber < 5)
+    {
+        fuckmainlogic[defaultnumber] = 0;
+        defaultnumber++;
+    }
+    while (fuckmainlogic[4] < (linenumber - fuckmainlogic[0]))
+    {
+        fuckmainlogic[5] = 0;
+        while (fuckmainlogic[5] < (width - fuckmainlogic[0]))
+        {
+            fuckmainlogic[6] = (linenumber - fuckmainlogic[4]);
+            while (fuckmainlogic[6] > fuckmainlogic[0])
+            {
+                if(!(insidemainlogic(fuckmainlogic, arr, obstaclechar)))
+                    break;
+            }
+            fuckmainlogic[5]++;
+        }
+        fuckmainlogic[4]++;
+    }
+    fillanswer(arr, fuckmainlogic[0], fillinsidechar, fuckmainlogic[2], fuckmainlogic[3]);
     printanswer(arr, linenumber, width);
 }
 
@@ -207,14 +206,16 @@ void mainfunction(char *argv)
     char    **arr;
     int     width;
     int     differentwidth;
+    int     defaultnumber;
 
     linenumber = 0;
+    defaultnumber = 0;
     arr = getquestion(argv, &linenumber, &nothingchar, &obstaclechar, &fillinsidechar);
     getwidth(arr, &width, &differentwidth, linenumber, nothingchar, obstaclechar, fillinsidechar);
     if(differentwidth)
         write(1, "map error\n", 10);
     else
-        mainlogic(arr, width, linenumber, obstaclechar, fillinsidechar);
+        mainlogic(defaultnumber, arr, width, linenumber, obstaclechar, fillinsidechar);
 }
 
 int main(int argc, char **argv) 
