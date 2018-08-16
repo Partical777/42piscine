@@ -20,7 +20,7 @@ char	**mapmalloc(int *fuckgetquestion, int *linenumber, char *nothingchar, char 
 	char **arr;
 
 	fuckgetquestion[0] = 8352100 / *linenumber;
-	arr = malloc(sizeof(char*)**linenumber);
+	arr = malloc(sizeof(char *) **linenumber);
 	while (fuckgetquestion[3] < *linenumber)
 	{
 		arr[fuckgetquestion[3]] = malloc(sizeof(char)*fuckgetquestion[0]);
